@@ -1,0 +1,120 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-title>{{series.title}}</ion-title>
+      <ion-badge color="success">{{puntuacionMedia()}}</ion-badge>
+    </ion-card-header>
+
+    <swiper [config]="opciones">
+      <ng-template swiperSlide *ngFor="let image of series.poster">
+        <img [src]="image" style="height: 300px; width: 400px"/></ng-template>
+    </swiper>
+
+    <ion-card-content>
+      <p>Resumen:</p>
+      <ion-label>{{series.plot}}</ion-label>
+
+      <p style="padding-top: 2em">Año:</p>
+      <ion-label>{{series.year}}</ion-label>
+
+      <p>Episodios:</p>
+      <ion-label>{{series.episodes}}</ion-label>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <h3>{{message}}</h3>
+  <ion-button id="open-modal" expand="block">Open</ion-button>
+
+  <ion-modal
+    trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Bienvenido {{usuario.nombre}}!!!</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+
+          <ion-list>
+            <ion-list-header>
+              <ion-label>
+                Formulario template: Valid <span [ngClass]="{'red':
+!formulario.valid, 'green': formulario.valid}">{{
+                formulario.valid }}</span>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input type="text"
+                         name="nombre"
+                         [(ngModel)]="usuario.nombre"
+                         minlength="4"
+                         required="true"></ion-input>
+
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email"
+                         name="email"
+
+                         pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+
+                         [(ngModel)]="usuario.email"
+                         required="true"></ion-input>
+
+            </ion-item>
+
+
+            <ion-item>
+              <ion-range name="rating" [(ngModel)]="usuario.puntuacion" [min]="0" [max]="10" [value]="5" [pin]="true"
+                         [ticks]="true" [snaps]="true"></ion-range>
+            </ion-item>
+
+
+          </ion-list>
+
+          <ion-button expand="full" type="submit"
+                      [disabled]="formulario.invalid"
+          (click)="presentToast('top')">
+
+            Enviar
+
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="tertiary" href="https://www.instagram.com">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="tertiary" href="https://github.com/asu101">
+        <ion-icon name="logo-github"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+
+
+  </ion-fab>
+
+</ion-content>
+
+
+

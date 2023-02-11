@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+
+<ion-content class="ion-padding">
+
+<ion-list>
+  <ion-card *ngFor="let item of serie" [routerLink]="['/tab/detalles/' + item._id]">
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
+    <ion-card-content>
+      <img src="{{item.poster[0]}}" />
+
+
+
+      <ion-card-subtitle>{{item.genres}}</ion-card-subtitle>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más datos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

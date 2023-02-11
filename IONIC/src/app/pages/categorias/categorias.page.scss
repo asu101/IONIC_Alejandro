@@ -1,0 +1,29 @@
+swiper{
+  padding-top: 1em;
+  padding-bottom: 3em;
+  border-bottom: 2em;
+}
+
+
+ion-avatar {
+  width: 4.1em;
+  height: 4.1em;
+}
+
+ion-card-title{
+  text-align: center;
+  font-weight: bold;
+  font-family: -apple-system;
+}
+ion-card.ios{
+  display: flex;
+  flex-flow: column-reverse;
+  border: lightgray 1px solid;
+}
+
+ion-card-subtitle{
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+
